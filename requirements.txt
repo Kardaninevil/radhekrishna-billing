@@ -6,3 +6,4 @@ reportlab
 pyjwt
 passlib[bcrypt]
 python-jose[cryptography]
+cryptography
