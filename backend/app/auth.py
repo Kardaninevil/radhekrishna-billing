@@ -1,6 +1,9 @@
 from passlib.context import CryptContext
 from jose import jwt
 from datetime import datetime, timedelta
+from fastapi import Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError
 
 SECRET_KEY = "RADHEKRISHNA_SECRET_KEY"
 ALGORITHM = "HS256"
@@ -21,10 +24,6 @@ def create_access_token(data: dict):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
-
-from fastapi import Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer
-from jose import JWTError
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 

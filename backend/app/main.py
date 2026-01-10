@@ -10,13 +10,20 @@ from . import models, schemas
 from .auth import hash_password, verify_password
 from .email_utils import send_reset_email
 from datetime import datetime
-
+from fastapi.middleware.cors import CORSMiddleware
 
 # 👇 YE LINE VERY IMPORTANT HAI
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Radhekrishna Engineering Billing")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
